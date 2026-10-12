@@ -1,75 +1,50 @@
-# React + TypeScript + Vite
+# Movie Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Search for movies and build a list of your favourites.
 
-Currently, two official plugins are available:
+**[Live demo](https://movie-app-roan-gamma.vercel.app)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Movie Finder home page](HomePage.png)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Search movies by title, with debounced input so the API isn't called on every keystroke
+- Loading, error and "no results" states
+- Movie details page with poster, plot and more
+- Add and remove favourites, saved in localStorage so they survive a refresh
+- Responsive layout from phone to desktop
+- Smooth animations on cards and page elements
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19 and TypeScript
+- Vite
+- Redux Toolkit for state
+- React Router for navigation
+- Tailwind CSS v4 for styling
+- Framer Motion for animation
+- Axios and the OMDb API for data
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Run it locally
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+1. Clone the repo and install dependencies:
+```bash
+   git clone https://github.com/rajan03-commits/Movie-app.git
+   cd Movie-app
+   npm install
+```
+2. Get a free API key from [OMDb](https://www.omdbapi.com/apikey.aspx).
+3. Create a `.env` file in the project root:
+```
+   VITE_OMDB_API_KEY=your_key_here
+```
+4. Start the dev server:
+```bash
+   npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## What I learned
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+- Managing app state with Redux Toolkit slices
+- Handling race conditions in async search with effect cleanup
+- Deploying a Vite single-page app to Vercel with environment variables
